@@ -1,0 +1,16 @@
+#CONFIGURATION FILE FOR SPECTRAL SWAGGER/OPEANAPI FILE LINTER
+extends: spectral:oas
+
+rules:
+  paths-kebab-case:
+    description: Should paths be kebab-case.
+    message: '{{property}} is not kebab-case (lower case and separated with hyphens)'
+    severity: error
+    given: $.paths[*]~
+    then:
+      function: casing
+      functionOptions:
+        type: kebab
+        separator:
+          char: /
+          allowLeading: true
